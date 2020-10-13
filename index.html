@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="TalkingCharts.io - Accessible Data Visualizations">
+  <meta name="author" content="Eric Wamugu">
+  <title>TalkingCharts.io - Accessible Data Visualizations</title>
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="vendor/fontawesome/css/fontawesome.css" rel="stylesheet">
+  <link href="vendor/fontawesome/css/solid.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">TalkingCharts.io - Accessible Data Visualizations</a>
+      <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+        </ul>
+      </div> -->
+    </div>
+  </nav>
+  <!-- Page Content -->
+  <div class="container">
+    <!-- <div class="row">
+      <div class="col-md-4 col-sm-4 d-flex flex-row-reverse">
+        <a href="#" class="" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <i class="fas fa-sliders-h"></i>
+        </a>
+      </div>
+    </div> -->
+    <div class="row">
+      <div class="col-md-4 col-sm-4">
+        <div class="card">
+          <div class="card-header">
+            <i class="fas fa-info-circle"></i>
+            <span>Press play to start</span>
+          </div>
+          <div class="card-body">
+            <form class="needs-validation" novalidate>
+              <div class="input-group mb-4">
+                <div class="input-group-prepend" style="width: 100%;">
+                  <button class="btn btn-primary btn-lg col-md-8 col-sm-8" type="button">
+                    <i class="fas fa-play"></i>
+                  </button>
+                  <button class="btn btn-outline-secondary btn-lg col-md-4 col-sm-4" type="button">
+                    <i class="fas fa-stop"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="input-group mb-4">
+                <div class="input-group-prepend" style="width: 100%;">
+                  <button class="btn btn-outline-secondary btn-lg col-md-6 col-sm-6" type="button">
+                    <i class="fas fa-step-backward"></i>
+                  </button>
+                  <button class="btn btn-outline-secondary btn-lg col-md-6 col-sm-6" type="button">
+                    <i class="fas fa-step-forward"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-sm-4">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <a href="#" class="navbar-brand" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <i class="fas fa-headphones"></i>
+              <span>Voice Settings</span>
+            </a>
+          </div>
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+              <form class="needs-validation" novalidate>
+                <div class="mb-3">
+                  <label for="country">Voice Accent & Language</label>
+                  <select class="custom-select d-block w-100" id="country" required>
+                    <option value="">Choose...</option>
+                    <option value="English">English</option>
+                    <option value="Français" selected>Français</option>
+                    <option value="Español">Español</option>
+                    <option value="Kiswahili">Kiswahili</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="volume">Volume</label>
+                  <div class="input-group">
+                    <input id="volume" class="border-0" type="range" min="0" max="100" />
+                    <span class="font-weight-bold text-primary ml-2 mt-1 volumeSpan"></span>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="pitch">Pitch</label>
+                  <div class="input-group">
+                    <input id="pitch" class="border-0" type="range" min="0" max="100" />
+                    <span class="font-weight-bold text-primary ml-2 mt-1 pitchSpan"></span>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="speed">Speed</label>
+                  <div class="input-group">
+                    <input id="speed" class="border-0" type="range" min="0" max="100" />
+                    <span class="font-weight-bold text-primary ml-2 mt-1 speedSpan"></span>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Bootstrap core JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+  <script src="https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      //volume
+      const $volumeSpan = $('.volumeSpan');
+      const $volumeValue = $('#volume');
+      $volumeSpan.html($volumeValue.val());
+      $volumeValue.on('input change', () => {
+        $volumeSpan.html($volumeValue.val());
+      });
+
+      //pitch
+      const $pitchSpan = $('.pitchSpan');
+      const $pitchValue = $('#pitch');
+      $pitchSpan.html($pitchValue.val());
+      $pitchValue.on('input change', () => {
+        $pitchSpan.html($pitchValue.val());
+      });
+
+      //speed
+      const $speedSpan = $('.speedSpan');
+      const $speedValue = $('#speed');
+      $speedSpan.html($speedValue.val());
+      $speedValue.on('input change', () => {
+        $speedSpan.html($speedValue.val());
+      });
+    });
+  </script>
+</body>
+</html>
