@@ -10,38 +10,96 @@
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="vendor/fontawesome/css/fontawesome.css" rel="stylesheet">
   <link href="vendor/fontawesome/css/solid.css" rel="stylesheet">
+  <style>
+    .files input {
+      outline: 2px dashed #92b0b3;
+      outline-offset: -10px;
+      -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+      transition: outline-offset .15s ease-in-out, background-color .15s linear;
+      padding: 70px 0px 90px 5%;
+      /* text-align: center !important; */
+      margin: 0;
+      width: 100% !important;
+    }
+    .files input:focus{     outline: 2px dashed #92b0b3;  outline-offset: -10px;
+      -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+      transition: outline-offset .15s ease-in-out, background-color .15s linear; border:1px solid #92b0b3;
+    }
+    .files{ position:relative}
+    /* .files:after {  pointer-events: none;
+      position: absolute;
+      top: 25px;
+      left: 0;
+      width: 30px;
+      right: 0;
+      height: 30px;
+      content: "";
+      background-image: url(https://www.flaticon.com/svg/static/icons/svg/685/685669.svg);
+      display: block;
+      margin: 0 auto;
+      background-size: 100%;
+      background-repeat: no-repeat;
+    } */
+    .color input{ background-color:#f1f1f1;}
+    .files:before {
+      position: absolute;
+      bottom: -10px;
+      left: 0;  pointer-events: none;
+      width: 100%;
+      right: 0;
+      height: 57px;
+      content: " or drag it here. ";
+      display: block;
+      margin: 0 auto;
+      color: #2ea591;
+      font-weight: 600;
+      text-transform: capitalize;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
       <a class="navbar-brand" href="#">TalkingCharts.io - Accessible Data Visualizations</a>
-      <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home
-              <span class="sr-only">(current)</span>
+            <a class="nav-link" href="#">
+              <i class="fas fa-home"></i>
+              <span class="sr-only">Home</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="about.html">About</a>
           </li>
         </ul>
-      </div> -->
+      </div>
     </div>
   </nav>
   <!-- Page Content -->
   <div class="container">
-    <!-- <div class="row">
-      <div class="col-md-4 col-sm-4 d-flex flex-row-reverse">
-        <a href="#" class="" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          <i class="fas fa-sliders-h"></i>
-        </a>
+    <div class="row">
+      <div class="col-md-4 col-sm-4">
+        <div class="card">
+          <div class="card-header">
+            <i class="fas fa-info-circle"></i>
+            <span>Upload a graph, chart or infographic</span>
+          </div>
+          <div class="card-body">
+            <form class="box" method="post" action="#" id="#" enctype="multipart/form-data">
+              <div class="form-group files color">
+                <input type="file" class="form-control" multiple="">
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
-    </div> -->
+    </div>
     <div class="row">
       <div class="col-md-4 col-sm-4">
         <div class="card">
@@ -131,6 +189,8 @@
   <script src="https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js"></script>
   <script>
     $(document).ready(function() {
+      //file upload
+      
       //volume
       const $volumeSpan = $('.volumeSpan');
       const $volumeValue = $('#volume');
