@@ -6,6 +6,11 @@
   <meta name="description" content="TalkingCharts.io - Accessible Data Visualizations">
   <meta name="author" content="Eric Wamugu">
   <title>TalkingCharts.io - Accessible Data Visualizations</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
+  <link rel="icon" type="image/png" href="assets/images/favicon/favicon.ico">
+  <link rel="manifest" href="assets/images/favicon/site.webmanifest">
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="vendor/fontawesome/css/fontawesome.css" rel="stylesheet">
@@ -13,6 +18,10 @@
   <style>
     .center-content {
       margin: 0 auto;
+    }
+
+    .card-body .progress {
+      display: none;
     }
 
     .box {
@@ -209,7 +218,7 @@
             <span>Upload a graph, chart or infographic</span>
           </div>
           <div class="card-body js">
-            <form method="post" action="https://css-tricks.com/examples/DragAndDropFileUploading//?" enctype="multipart/form-data" novalidate class="box">
+            <form method="post" action="" enctype="multipart/form-data" novalidate class="box">
               <div class="box__input">
                 <input type="file" name="files[]" id="file" class="box__file" data-multiple-caption="{count} files selected" multiple />
                 <label for="file"><strong>Choose a file</strong><span class="box__dragndrop"> or drag it here</span></label>
@@ -228,6 +237,20 @@
                 <a href="https://elric-wamugu.github.io/GC-Prototype/" class="box__restart" role="button">Try again!</a>
               </div>
             </form>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+            </div>
+            <p></p>
+            <div class="dataVizCaption font-italic" style="display: none;">
+              <p class="text-justify">
+                The graph illustrates trends in music buying habits between 2011 and 2018. It presents three different methods: streaming, downloading and buying CDs.
+                Overall, both downloads and physical sales of music have steadily declined. The latter has slumped since 2011, while the downturn for the former began in 2014. However, there has been a sharp rise in people streaming music since 2013.
+              </p>
+              <p>
+                Downloads peaked in 2014 at about 43% of sales but fell to 30% by 2018. This was slightly higher than physical sales, which shrank to 25%. Streaming, on the other hand, overtook both of them and accounted for just over 40% of sales in 2018.
+              </p>
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -329,7 +352,26 @@
           var div = document.createElement( 'div' );
           return ( ( 'draggable' in div ) || ( 'ondragstart' in div && 'ondrop' in div ) ) && 'FormData' in window && 'FileReader' in window;
         }();
-  
+      
+      function showVizCaption(){
+        var showCaption = document.querySelector(".dataVizCaption");
+        showCaption.style.display = "block";
+      }
+
+      var showProgressBar = function()
+        {
+          var progress = document.querySelector(".progress");
+          var progressBar = document.querySelector('.progress-bar');
+          progress.style.display = "flex";
+          for (let step = 0; step <= 100; step++) {
+            setTimeout(function(){
+              progressBar.setAttribute( 'aria-valuenow', step );
+              progressBar.style.width = step + "%";
+              progressBar.textContent = step + "%";
+            }, 500);
+          }
+          setTimeout(showVizCaption, 1500);
+        };
   
       // applying the effect for every form
       var forms = document.querySelectorAll( '.box' );
@@ -362,13 +404,12 @@
         input.addEventListener( 'change', function( e )
         {
           showFiles( e.target.files );
-  
-          
-          triggerFormSubmit();
-  
-          
+          showProgressBar();
+          console.log('change');
+          // console.log(e.target.files);
+          // triggerFormSubmit();
         });
-  
+
         // drag&drop files if the feature is available
         if( isAdvancedUpload )
         {
@@ -401,17 +442,18 @@
           {
             droppedFiles = e.dataTransfer.files; // the files that were dropped
             showFiles( droppedFiles );
-  
-            
-            triggerFormSubmit();
-  
-                    });
+            console.log('drop');
+            showProgressBar();
+            // console.log(droppedFiles);
+            // triggerFormSubmit();
+          });
         }
-  
-  
+
         // if the form was submitted
         form.addEventListener( 'submit', function( e )
         {
+          e.preventDefault();
+         
           // preventing the duplicate submissions if the current one is in progress
           if( form.classList.contains( 'is-uploading' ) ) return false;
   
@@ -422,84 +464,19 @@
           {
             e.preventDefault();
   
-            // gathering the form data
-            var ajaxData = new FormData( form );
-            if( droppedFiles )
-            {
-              Array.prototype.forEach.call( droppedFiles, function( file )
-              {
-                ajaxData.append( input.getAttribute( 'name' ), file );
-              });
-            }
-  
-            // ajax request
-            var ajax = new XMLHttpRequest();
-            ajax.open( form.getAttribute( 'method' ), form.getAttribute( 'action' ), true );
-  
-            ajax.onload = function()
-            {
-              form.classList.remove( 'is-uploading' );
-              if( ajax.status >= 200 && ajax.status < 400 )
-              {
-                var data = JSON.parse( ajax.responseText );
-                form.classList.add( data.success == true ? 'is-success' : 'is-error' );
-                if( !data.success ) errorMsg.textContent = data.error;
-              }
-              else alert( 'Error. Please, contact the webmaster!' );
-            };
-  
-            ajax.onerror = function()
-            {
-              form.classList.remove( 'is-uploading' );
-              alert( 'Error. Please, try again!' );
-            };
-  
-            ajax.send( ajaxData );
           }
           else // fallback Ajax solution upload for older browsers
           {
-            var iframeName	= 'uploadiframe' + new Date().getTime(),
-              iframe		= document.createElement( 'iframe' );
-  
-              $iframe		= $( '<iframe name="' + iframeName + '" style="display: none;"></iframe>' );
-  
-            iframe.setAttribute( 'name', iframeName );
-            iframe.style.display = 'none';
-  
-            document.body.appendChild( iframe );
-            form.setAttribute( 'target', iframeName );
-  
-            iframe.addEventListener( 'load', function()
-            {
-              var data = JSON.parse( iframe.contentDocument.body.innerHTML );
-              form.classList.remove( 'is-uploading' )
-              form.classList.add( data.success == true ? 'is-success' : 'is-error' )
-              form.removeAttribute( 'target' );
-              if( !data.success ) errorMsg.textContent = data.error;
-              iframe.parentNode.removeChild( iframe );
-            });
+            
           }
         });
-  
-  
-        // restart the form if has a state of error/success
-        Array.prototype.forEach.call( restart, function( entry )
-        {
-          entry.addEventListener( 'click', function( e )
-          {
-            e.preventDefault();
-            form.classList.remove( 'is-error', 'is-success' );
-            input.click();
-          });
-        });
-  
+
         // Firefox focus bug fix for file input
         input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
         input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
   
       });
     }( document, window, 0 ));
-  
   </script>
   <script>
     $(document).ready(function() {
