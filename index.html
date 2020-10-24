@@ -183,6 +183,14 @@
     .box__button:focus {
         background-color: #0f3c4b;
     }
+
+    .audios audio {
+      display: none;
+      width: 100%;
+    }
+    .audios audio.active {
+      display: inline-block;
+    }
   </style>
 </head>
 <body>
@@ -266,22 +274,30 @@
             <form class="needs-validation" novalidate>
               <div class="input-group mb-4">
                 <div class="input-group-prepend" style="width: 100%;">
-                  <button class="btn btn-primary btn-lg col-md-8 col-sm-8" type="button">
+                  <button id="audio-play" class="btn btn-primary btn-lg col-md-8 col-sm-8" type="button">
                     <i class="fas fa-play"></i>
                   </button>
-                  <button class="btn btn-outline-secondary btn-lg col-md-4 col-sm-4" type="button">
+                  <button id="audio-stop" class="btn btn-outline-secondary btn-lg col-md-4 col-sm-4" type="button">
                     <i class="fas fa-stop"></i>
                   </button>
                 </div>
               </div>
               <div class="input-group mb-4">
                 <div class="input-group-prepend" style="width: 100%;">
-                  <button class="btn btn-outline-secondary btn-lg col-md-6 col-sm-6" type="button">
+                  <button class="btn btn-outline-secondary btn-lg col-md-6 col-sm-6" type="button" aria-label="Play audio" disabled>
                     <i class="fas fa-step-backward"></i>
                   </button>
-                  <button class="btn btn-outline-secondary btn-lg col-md-6 col-sm-6" type="button">
+                  <button class="btn btn-outline-secondary btn-lg col-md-6 col-sm-6" type="button" aria-label="Stop audio" disabled>
                     <i class="fas fa-step-forward"></i>
                   </button>
+                </div>
+              </div>
+              <div class="input-group mb-4">
+                <div class="input-group-prepend audios" style="width: 100%;">
+                  <audio id="audio-en" class="audio-en" src="assets/audio/graph-text-en.mp3" controls></audio>
+                  <audio id="audio-es" class="audio-es" src="assets/audio/graph-text-es.mp3" controls></audio>
+                  <audio id="audio-fr" class="audio-fr" src="assets/audio/graph-text-fr.mp3" controls></audio>
+                  <audio id="audio-sw" class="audio-sw" src="assets/audio/graph-text-sw.mp3" controls></audio>
                 </div>
               </div>
             </form>
@@ -305,19 +321,19 @@
                   <label for="country">Voice Accent & Language</label>
                   <select class="custom-select d-block w-100" id="country" required>
                     <option value="">Choose...</option>
-                    <option value="English">English</option>
-                    <option value="Français" selected>Français</option>
-                    <option value="Español">Español</option>
-                    <option value="Kiswahili">Kiswahili</option>
+                    <option value="en">English</option>
+                    <option value="fr">Français</option>
+                    <option value="es">Español</option>
+                    <option value="sw">Kiswahili</option>
                   </select>
                 </div>
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                   <label for="volume">Volume</label>
                   <div class="input-group">
                     <input id="volume" class="border-0" type="range" min="0" max="100" />
                     <span class="font-weight-bold text-primary ml-2 mt-1 volumeSpan"></span>
                   </div>
-                </div>
+                </div> -->
                 <div class="mb-3">
                   <label for="pitch">Pitch</label>
                   <div class="input-group">
@@ -355,7 +371,10 @@
       
       function showVizCaption(){
         var showCaption = document.querySelector(".dataVizCaption");
+        var selectedCountry = document.querySelector("#country").value;
+        var defaultAudio = document.querySelector(".audios .audio-" + selectedCountry);
         showCaption.style.display = "block";
+        defaultAudio.classList.add( 'active' );
       }
 
       var showProgressBar = function()
@@ -405,7 +424,6 @@
         {
           showFiles( e.target.files );
           showProgressBar();
-          console.log('change');
           // console.log(e.target.files);
           // triggerFormSubmit();
         });
@@ -442,7 +460,6 @@
           {
             droppedFiles = e.dataTransfer.files; // the files that were dropped
             showFiles( droppedFiles );
-            console.log('drop');
             showProgressBar();
             // console.log(droppedFiles);
             // triggerFormSubmit();
@@ -480,8 +497,36 @@
   </script>
   <script>
     $(document).ready(function() {
-      //file upload
-      
+      //language change
+      $('#country').on('change', () => {
+        // if($(".dataVizCaption").is(":hidden")){
+        //   alert('Please select or upload a data visualization to continue!');
+        // } else {
+          $(".audios audio").removeClass("active");
+          var country = $('#country').val();
+          var graphAudio = $('.audios .audio-' + country);
+          graphAudio.addClass('active');
+        // }
+      });
+
+      //playing and stoping current audio
+      function play_audio(task) {
+        if(task == 'play'){
+          $(".audios audio.active").trigger('play');
+        }
+        if(task == 'stop'){
+          $(".audios audio.active").trigger('pause');
+          // $(".audios audio.active").prop("currentTime",0);
+        }
+      }
+
+      $( "#audio-play" ).click(function() {
+        play_audio('play');
+      });
+      $( "#audio-stop" ).click(function() {
+        play_audio('stop');
+      });
+
       //volume
       const $volumeSpan = $('.volumeSpan');
       const $volumeValue = $('#volume');
