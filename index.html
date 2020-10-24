@@ -335,17 +335,17 @@
                   </div>
                 </div> -->
                 <div class="mb-3">
+                  <label for="speed">Speed</label>
+                  <div class="input-group">
+                    <input id="speed" class="border-0" type="range" min="100" max="200" />
+                    <span class="font-weight-bold text-primary ml-2 mt-1 speedSpan"></span>
+                  </div>
+                </div>
+                <div class="mb-3">
                   <label for="pitch">Pitch</label>
                   <div class="input-group">
                     <input id="pitch" class="border-0" type="range" min="0" max="100" />
                     <span class="font-weight-bold text-primary ml-2 mt-1 pitchSpan"></span>
-                  </div>
-                </div>
-                <div class="mb-3">
-                  <label for="speed">Speed</label>
-                  <div class="input-group">
-                    <input id="speed" class="border-0" type="range" min="0" max="100" />
-                    <span class="font-weight-bold text-primary ml-2 mt-1 speedSpan"></span>
                   </div>
                 </div>
               </form>
@@ -499,29 +499,50 @@
     $(document).ready(function() {
       //language change
       $('#country').on('change', () => {
-        // if($(".dataVizCaption").is(":hidden")){
-        //   alert('Please select or upload a data visualization to continue!');
-        // } else {
-          $(".audios audio").removeClass("active");
-          var country = $('#country').val();
-          var graphAudio = $('.audios .audio-' + country);
-          graphAudio.addClass('active');
-        // }
+        $(".audios audio").removeClass("active");
+        var country = $('#country').val();
+        var graphAudio = $('.audios .audio-' + country);
+        graphAudio.addClass('active');
       });
 
       //playing and stoping current audio
-      function play_audio(task) {
+      function play_audio(task, playbackRate) {
         if(task == 'play'){
+          const audio = document.querySelector("audio.active");
+          try {
+            audio.playbackRate = playbackRate;
+          } catch(error) {
+            console.log('> Error: ' + error.message);
+          }
           $(".audios audio.active").trigger('play');
         }
         if(task == 'stop'){
           $(".audios audio.active").trigger('pause');
-          // $(".audios audio.active").prop("currentTime",0);
+          $(".audios audio.active").prop("currentTime",0);
+        }
+      }
+
+      //change the speed of speech
+      function getPlaybackRate(speed) {
+        switch (true) {
+          case (speed >= 100 && speed <= 133):
+            return 1;
+            break;
+          case (speed >= 134 && speed <= 166):
+            return 1.5;
+            break;
+          case (speed >= 167 && speed <= 200):
+            return 2;
+            break;
+          default:
+            return 1;
         }
       }
 
       $( "#audio-play" ).click(function() {
-        play_audio('play');
+        var playbackRate = getPlaybackRate($('#speed').val());
+        console.log(playbackRate);
+        play_audio('play', playbackRate);
       });
       $( "#audio-stop" ).click(function() {
         play_audio('stop');
@@ -548,7 +569,9 @@
       const $speedValue = $('#speed');
       $speedSpan.html($speedValue.val());
       $speedValue.on('input change', () => {
-        $speedSpan.html($speedValue.val());
+        $speedSpan.html($speedValue.val() + '%');
+        var playbackRate = getPlaybackRate($speedValue.val());
+        play_audio('play', playbackRate);
       });
     });
   </script>
