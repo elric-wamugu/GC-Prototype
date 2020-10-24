@@ -337,7 +337,7 @@
                 <div class="mb-3">
                   <label for="speed">Speed</label>
                   <div class="input-group">
-                    <input id="speed" class="border-0" type="range" min="100" max="200" />
+                    <input id="speed" class="border-0" type="range" value="100" min="100" max="200" />
                     <span class="font-weight-bold text-primary ml-2 mt-1 speedSpan"></span>
                   </div>
                 </div>
@@ -541,7 +541,6 @@
 
       $( "#audio-play" ).click(function() {
         var playbackRate = getPlaybackRate($('#speed').val());
-        console.log(playbackRate);
         play_audio('play', playbackRate);
       });
       $( "#audio-stop" ).click(function() {
