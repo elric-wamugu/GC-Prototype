@@ -566,7 +566,7 @@
       //speed
       const $speedSpan = $('.speedSpan');
       const $speedValue = $('#speed');
-      $speedSpan.html($speedValue.val());
+      $speedSpan.html($speedValue.val() + '%');
       $speedValue.on('input change', () => {
         $speedSpan.html($speedValue.val() + '%');
         var playbackRate = getPlaybackRate($speedValue.val());
