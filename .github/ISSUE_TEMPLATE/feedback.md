@@ -1,13 +1,13 @@
 ---
 name: Feedback
-about: Please provide your feedback using the I like, I wish, What if format
+about: Please provide your feedback using the [I Like, I Wish, What if](https://public-media.interaction-design.org/pdf/I-Like-I-Wish-What-If.pdf) feedback format
 title: ''
 labels: ''
 assignees: elric-wamugu
 
 ---
 
-A preview of the [I Like, I Wish, What if](https://public-media.interaction-design.org/pdf/I-Like-I-Wish-What-If.pdf) feedback format
+A preview of the I Like, I Wish, What if feedback format: https://public-media.interaction-design.org/pdf/I-Like-I-Wish-What-If.pdf
 
 **I Like...**
 A clear and concise description of what you like about the prototype.
