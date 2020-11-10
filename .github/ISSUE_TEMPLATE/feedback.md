@@ -1,6 +1,6 @@
 ---
 name: Feedback
-about: Please provide your feedback using the 'I Like, I Wish, What if' feedback format
+about: Suggest an idea for this project. Please provide your feedback using the 'I Like, I Wish, What if' feedback format
 title: ''
 labels: ''
 assignees: elric-wamugu
