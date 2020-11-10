@@ -1,6 +1,6 @@
 ---
 name: Feedback
-about: Please provide your feedback using the [I Like, I Wish, What if](https://public-media.interaction-design.org/pdf/I-Like-I-Wish-What-If.pdf) feedback format
+about: Please provide your feedback using the 'I Like, I Wish, What if' feedback format
 title: ''
 labels: ''
 assignees: elric-wamugu
