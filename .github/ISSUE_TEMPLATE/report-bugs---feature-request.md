@@ -1,6 +1,6 @@
 ---
 name: Report Bugs & Feature request
-about: Suggest an idea for this project
+about: Submit issues found and new features you would like to see in this project
 title: ''
 labels: bug, enhancement
 assignees: elric-wamugu
