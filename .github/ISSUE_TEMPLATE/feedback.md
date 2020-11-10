@@ -2,7 +2,7 @@
 name: Feedback
 about: Suggest an idea for this project. Please provide your feedback using the 'I Like, I Wish, What if' feedback format
 title: ''
-labels: ''
+labels: 'enhancement'
 assignees: elric-wamugu
 
 ---
