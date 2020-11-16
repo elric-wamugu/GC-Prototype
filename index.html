@@ -324,7 +324,7 @@
                   <label for="country">Voice Accent & Language</label>
                   <select class="custom-select d-block w-100" id="country" required>
                     <option value="">Choose...</option>
-                    <option value="en">English</option>
+                    <option value="en" selected="selected">English</option>
                     <option value="fr">Français</option>
                     <option value="es">Español</option>
                     <option value="sw">Kiswahili</option>
@@ -502,15 +502,28 @@
     $(document).ready(function() {
       //language change
       $('#country').on('change', () => {
+        play_audio('stop');
+        change_audio();
+      });
+
+      function check_upload(){
+        if($('.dataVizCaption ').is(':visible')){
+          return true;
+        }
+        $(".audios audio").removeClass("active");
+        $('#file').trigger('click');
+      }
+
+      function change_audio(){
         $(".audios audio").removeClass("active");
         var country = $('#country').val();
         var graphAudio = $('.audios .audio-' + country);
         graphAudio.addClass('active');
-      });
+      }
 
       //playing and stoping current audio
       function play_audio(task, playbackRate) {
-        if(task == 'play'){
+        if(check_upload() && task == 'play'){
           const audio = document.querySelector("audio.active");
           try {
             audio.playbackRate = playbackRate;
@@ -543,6 +556,7 @@
       }
 
       $( "#audio-play" ).click(function() {
+        change_audio();
         var playbackRate = getPlaybackRate($('#speed').val());
         play_audio('play', playbackRate);
       });
