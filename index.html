@@ -184,6 +184,19 @@
         background-color: #0f3c4b;
     }
 
+    .gallery-image img {
+      width: 30%;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 5px;
+    }
+
+    .gallery-image img:hover {
+      box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+      cursor: pointer;
+      width: 100%;
+    }
+
     .audios audio {
       display: none;
       width: 100%;
@@ -213,7 +226,7 @@
             <a class="nav-link" href="about.html">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSfPfhTYzHSRPZmMH6Qaj2i0HzgW5MqM9hcnm5I8REKKN4VYuw/viewform">Feedback</a>
+            <a class="nav-link" target="_blank" href="https://github.com/elric-wamugu/GC-Prototype/issues/new/choose">Feedback</a>
           </li>
         </ul>
       </div>
@@ -251,7 +264,15 @@
             <div class="progress">
               <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
             </div>
-            <p></p>
+            <p><span>OR, Select one of the examples below</span></p>
+            <div class="gallery ">
+              <div class="gallery-image">
+                <a href="#" ><img class="" src="assets/images/Bar-Chart-Example.jpg" alt="a Bar Chart Example" /></a>
+              </div>
+              <!-- <div class="gallery-image">
+                <a href="#" ><img class="selected" src="assets/images/Pie-Chart-Example.jpg" alt="a Bar Chart Example" /></a>
+              </div> -->
+            </div>
             <div class="dataVizCaption font-italic" style="display: none;">
               <p class="text-justify">
                 The graph illustrates trends in music buying habits between 2011 and 2018. It presents three different methods: streaming, downloading and buying CDs.
@@ -500,6 +521,9 @@
   </script>
   <script>
     $(document).ready(function() {
+      $( ".gallery-image img" ).click(function() {
+        $( this ).toggleClass( "selected" );
+      });
       //language change
       $('#country').on('change', () => {
         play_audio('stop');
