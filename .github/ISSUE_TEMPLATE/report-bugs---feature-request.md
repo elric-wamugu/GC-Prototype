@@ -8,13 +8,13 @@ assignees: elric-wamugu
 ---
 
 **Is your feature request related to a problem? Please describe below.**
-A clear and concise description of what the problem is. Eg. I'm always frustrated when [...]
+<!--(A clear and concise description of what the problem is. Eg. I'm always frustrated when [...])-->
 
 **Describe the solution you'd like to see**
-A clear and concise description of what you want to happen.
+<!--(A clear and concise description of what you want to happen.)-->
 
 **Describe any alternatives you've considered for your problem**
-A clear and concise description of any alternative solutions or features you've considered.
+<!--(A clear and concise description of any alternative solutions or features you've considered.)-->
 
 **Additional context**
-Add any other context or screenshots about the feature request or bug report here
+<!--(Add any other context or screenshots about the feature request or bug report here)-->
