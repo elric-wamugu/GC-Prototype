@@ -2,7 +2,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/fccdfb74-70af-4923-aa50-2f830aaa12f3/deploy-status)](https://app.netlify.com/sites/talkingcharts/deploys)
 
-Early stage and basic Prototype: 
+You can access the very early stage and basic Prototype on any of the URLs below: 
 1. [TalkingCharts.io](talkingcharts.io/)
 2. [talkingcharts.netlify.app](talkingcharts.netlify.app)
 3. [https://elric-wamugu.github.io/GC-Prototype/index.html](https://elric-wamugu.github.io/GC-Prototype/index.html)
