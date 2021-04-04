@@ -1,6 +1,6 @@
 # Research Prototype
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/fccdfb74-70af-4923-aa50-2f830aaa12f3/deploy-status)](https://app.netlify.com/sites/talkingcharts/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/fccdfb74-70af-4923-aa50-2f830aaa12f3/deploy-status)](https://talkingcharts.netlify.app)
 
 You can access the very early stage and basic Prototype on any of the URLs below: 
 1. [TalkingCharts.io](https://talkingcharts.io/)
