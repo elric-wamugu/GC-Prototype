@@ -350,13 +350,13 @@
               </div>
               <div class="input-group mb-4">
                 <div class="input-group-prepend audios" style="width: 100%;">
-                  <audio id="audio-en" class="audio-en" src="assets/audio/graph-text-en.mp3" controls></audio>
-                  <audio id="audio-es" class="audio-es" src="assets/audio/graph-text-es.mp3" controls></audio>
-                  <audio id="audio-fr" class="audio-fr" src="assets/audio/graph-text-fr.mp3" controls></audio>
-                  <audio id="audio-sw" class="audio-sw" src="assets/audio/graph-text-sw.mp3" controls></audio>
-                  <audio id="viz1-en" class="audio-en" src="assets/audio/viz1-en.mp3" controls></audio>
-                  <audio id="viz1-es" class="audio-es" src="assets/audio/viz1-es.mp3" controls></audio>
-                  <audio id="viz1-fr" class="audio-es" src="assets/audio/viz1-fr.mp3" controls></audio>
+                  <audio id="audio-en" class="audio-en audio" src="assets/audio/graph-text-en.mp3" controls></audio>
+                  <audio id="audio-es" class="audio-es audio" src="assets/audio/graph-text-es.mp3" controls></audio>
+                  <audio id="audio-fr" class="audio-fr audio" src="assets/audio/graph-text-fr.mp3" controls></audio>
+                  <audio id="audio-sw" class="audio-sw audio" src="assets/audio/graph-text-sw.mp3" controls></audio>
+                  <audio id="viz1-en" class="audio-eng audio" src="assets/audio/viz1-en.mp3" controls></audio>
+                  <audio id="viz1-es" class="audio-es audio" src="assets/audio/viz1-es.mp3" controls></audio>
+                  <audio id="viz1-fr" class="audio-fr audio" src="assets/audio/viz1-fr.mp3" controls></audio>
                   <audio id="viz2-en" class="audio" src="assets/audio/viz2-en.mp3" controls></audio>
 
                 </div>
@@ -568,7 +568,11 @@
     $(document).ready(function() {
       $( ".gallery-image img" ).click(function() {
         $( ".gallery-image img" ).removeClass( "selected" );
-        $("audio").removeClass("active");
+        $( ".audios audio" ).removeClass("active");
+        // $( ".audio" ).each(function() {
+        //   $( this ).toggleClass("active");
+          
+        // });
         $( this ).toggleClass( "selected" );
         showVizCaption($( this ).attr('id'));
       });
@@ -579,14 +583,14 @@
         $('#dataVizCaption' + selectedDataVizId).show();
 
         $( ".audios audio" ).each(function() {
-          $( this ).removeClass("active");
-          console.log(this);
+          // $( this ).removeClass("active");
+          // console.log(this);
         });
 
         // $(".audios audio").removeClass("active");
         var country = $('#country').val();
         if(selectedDataVizId == '2'){
-          $(".audios audio").removeClass("active");
+          // $(".audios audio").removeClass("active");
           var graphAudio = $('.audios .audio-' + country);
         } else {
           var graphAudio = $('.audios #viz' + selectedDataVizId + '-' + country);
