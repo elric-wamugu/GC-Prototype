@@ -184,6 +184,39 @@
         background-color: #0f3c4b;
     }
 
+    .gallery {
+      width: 100%;
+      float: left;
+    }
+
+    .gallery-image {
+      width: 45%;
+      float: left;
+    }
+
+    .gallery-image img {
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 5px;
+    }
+
+    .gallery-image img:hover {
+      box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+      cursor: pointer;
+      /* width: 200%; */
+    }
+
+    .gallery-image img.selected {
+      box-shadow: 0 0 5px 5px rgba(0, 140, 186, 0.5);
+      /* width: 40%; */
+    }
+
+    .dataVizCaptions {
+      width: 100%;
+      float: left;
+    }
+
     .audios audio {
       display: none;
       width: 100%;
@@ -213,7 +246,7 @@
             <a class="nav-link" href="about.html">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSfPfhTYzHSRPZmMH6Qaj2i0HzgW5MqM9hcnm5I8REKKN4VYuw/viewform">Feedback</a>
+            <a class="nav-link" target="_blank" href="https://github.com/elric-wamugu/GC-Prototype/issues/new/choose">Feedback</a>
           </li>
         </ul>
       </div>
@@ -251,16 +284,36 @@
             <div class="progress">
               <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
             </div>
-            <p></p>
-            <div class="dataVizCaption font-italic" style="display: none;">
-              <p class="text-justify">
-                The graph illustrates trends in music buying habits between 2011 and 2018. It presents three different methods: streaming, downloading and buying CDs.
-                Overall, both downloads and physical sales of music have steadily declined. The latter has slumped since 2011, while the downturn for the former began in 2014. However, there has been a sharp rise in people streaming music since 2013.
-              </p>
-              <p>
-                Downloads peaked in 2014 at about 43% of sales but fell to 30% by 2018. This was slightly higher than physical sales, which shrank to 25%. Streaming, on the other hand, overtook both of them and accounted for just over 40% of sales in 2018.
-              </p>
-              </p>
+            <p><span>OR, Try out these examples below</span></p>
+            <div class="gallery ">
+              <div class="gallery-image">
+                <a href="#"><img class="" id="viz1" src="assets/images/Bar-Chart-Example.jpg" alt="a Bar Chart Example" /></a>
+              </div>
+              <div class="gallery-image">
+                <a href="#"><img class="" id="viz2" src="assets/images/Pie-Chart-Example.jpg" alt="a Bar Chart Example" /></a>
+              </div>
+            </div>
+            <div class="dataVizCaptions font-italic">
+              <div id="dataVizCaption1" class="dataVizCaption" style="display: none;">
+                <p class="text-justify">
+                  Exam question. <br> The bar chart below shows the number of men and women studying engineering at Australian universities. Summarise the information in the chart by selecting and reporting the main features. Make comparisons where relevant.
+                </p>
+                <p>
+                  The Y axis represents the number of students studying engineering, while the X axis representing the years by decade from 1992, 2002, to 2012.
+                </p>
+                <p>
+                  In 1992, there were 14,000 men studying engineering at Australian universities compared to 2000 women. In 2002, the number of male students reduced by 2000 to 12,000 while female students had increased by 2,000 to 4,000 in total. A decade later in 2012, there was no change in the total number of men studying engineering with the figure remaining at 12,000 while there was an increase in the number of women by 2,000 to 6,000 women in total.
+                </p>
+              </div>
+              <div id="dataVizCaption2" class="dataVizCaption" style="display: none;">
+                <p class="text-justify">
+                  The graph illustrates trends in music buying habits between 2011 and 2018. It presents three different methods: streaming, downloading and buying CDs.
+                  Overall, both downloads and physical sales of music have steadily declined. The latter has slumped since 2011, while the downturn for the former began in 2014. However, there has been a sharp rise in people streaming music since 2013.
+                </p>
+                <p>
+                  Downloads peaked in 2014 at about 43% of sales but fell to 30% by 2018. This was slightly higher than physical sales, which shrank to 25%. Streaming, on the other hand, overtook both of them and accounted for just over 40% of sales in 2018.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -301,6 +354,11 @@
                   <audio id="audio-es" class="audio-es" src="assets/audio/graph-text-es.mp3" controls></audio>
                   <audio id="audio-fr" class="audio-fr" src="assets/audio/graph-text-fr.mp3" controls></audio>
                   <audio id="audio-sw" class="audio-sw" src="assets/audio/graph-text-sw.mp3" controls></audio>
+                  <audio id="viz1-en" class="audio-en" src="assets/audio/viz1-en.mp3" controls></audio>
+                  <audio id="viz1-es" class="audio-es" src="assets/audio/viz1-es.mp3" controls></audio>
+                  <audio id="viz1-fr" class="audio-es" src="assets/audio/viz1-fr.mp3" controls></audio>
+                  <audio id="viz2-en" class="audio" src="assets/audio/viz2-en.mp3" controls></audio>
+
                 </div>
               </div>
             </form>
@@ -373,13 +431,21 @@
         }();
       
       function showVizCaption(){
-        var showCaption = document.querySelector(".dataVizCaption");
+        var showCaption = document.querySelector("#dataVizCaption2");
         var selectedCountry = document.querySelector("#country").value;
         var defaultAudio = document.querySelector(".audios .audio-" + selectedCountry);
         showCaption.style.display = "block";
         defaultAudio.classList.add( 'active' );
       }
 
+      var viz1 = document.querySelector( '#viz1' );
+      var viz2 = document.querySelector( '#viz2' );
+      /* selectedViz.addEventListener( 'click', function( e )
+      {
+        showVizCaption();
+        console.log('called');
+      });
+      */
       var showProgressBar = function()
         {
           var progress = document.querySelector(".progress");
@@ -500,6 +566,36 @@
   </script>
   <script>
     $(document).ready(function() {
+      $( ".gallery-image img" ).click(function() {
+        $( ".gallery-image img" ).removeClass( "selected" );
+        $("audio").removeClass("active");
+        $( this ).toggleClass( "selected" );
+        showVizCaption($( this ).attr('id'));
+      });
+
+      function showVizCaption(selectedDataViz){
+        $(".dataVizCaption").hide();
+        var selectedDataVizId = selectedDataViz.replace("viz", "");
+        $('#dataVizCaption' + selectedDataVizId).show();
+
+        $( ".audios audio" ).each(function() {
+          $( this ).removeClass("active");
+          console.log(this);
+        });
+
+        // $(".audios audio").removeClass("active");
+        var country = $('#country').val();
+        if(selectedDataVizId == '2'){
+          $(".audios audio").removeClass("active");
+          var graphAudio = $('.audios .audio-' + country);
+        } else {
+          var graphAudio = $('.audios #viz' + selectedDataVizId + '-' + country);
+        }
+        
+        // console.log(graphAudio);
+        graphAudio.addClass('active');
+      }
+
       //language change
       $('#country').on('change', () => {
         play_audio('stop');
@@ -523,8 +619,9 @@
 
       //playing and stoping current audio
       function play_audio(task, playbackRate) {
-        if(check_upload() && task == 'play'){
+        if(task == 'play'){
           const audio = document.querySelector("audio.active");
+          // console.log(audio);
           try {
             audio.playbackRate = playbackRate;
           } catch(error) {
@@ -556,7 +653,7 @@
       }
 
       $( "#audio-play" ).click(function() {
-        change_audio();
+        // change_audio();
         var playbackRate = getPlaybackRate($('#speed').val());
         play_audio('play', playbackRate);
       });
