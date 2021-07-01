@@ -567,12 +567,9 @@
   <script>
     $(document).ready(function() {
       $( ".gallery-image img" ).click(function() {
+        play_audio('stop');
         $( ".gallery-image img" ).removeClass( "selected" );
         $( ".audios audio" ).removeClass("active");
-        // $( ".audio" ).each(function() {
-        //   $( this ).toggleClass("active");
-          
-        // });
         $( this ).toggleClass( "selected" );
         showVizCaption($( this ).attr('id'));
       });
