@@ -364,13 +364,13 @@
                   <audio id="audio-sw" class="audio-sw audio" src="assets/audio/graph-text-sw.mp3" controls>
                     Your browser does not support the <code>audio</code> element.
                   </audio>
-                  <audio id="viz1-en" class="audio-eng audio" src="assets/audio/viz1-en.mp3" controls>
+                  <audio id="viz1-en" class="audio audio" src="assets/audio/viz1-en.mp3" controls>
                     Your browser does not support the <code>audio</code> element.
                   </audio>
-                  <audio id="viz1-es" class="audio-es audio" src="assets/audio/viz1-es.mp3" controls>
+                  <audio id="viz1-es" class="audio audio" src="assets/audio/viz1-es.mp3" controls>
                     Your browser does not support the <code>audio</code> element.
                   </audio>
-                  <audio id="viz1-fr" class="audio-fr audio" src="assets/audio/viz1-fr.mp3" controls>
+                  <audio id="viz1-fr" class="audio audio" src="assets/audio/viz1-fr.mp3" controls>
                     Your browser does not support the <code>audio</code> element.
                   </audio>
                   <audio id="viz2-en" class="audio" src="assets/audio/viz2-en.mp3" controls>
@@ -598,26 +598,23 @@
         $('#dataVizCaption' + selectedDataVizId).show();
 
         $( ".audios audio" ).each(function() {
-          // $( this ).removeClass("active");
-          // console.log(this);
+          $( this ).removeClass("active");
         });
 
-        // $(".audios audio").removeClass("active");
         var country = $('#country').val();
         if(selectedDataVizId == '2'){
-          // $(".audios audio").removeClass("active");
           var graphAudio = $('.audios .audio-' + country);
         } else {
           var graphAudio = $('.audios #viz' + selectedDataVizId + '-' + country);
         }
-        
-        // console.log(graphAudio);
         graphAudio.addClass('active');
       }
 
       //language change
       $('#country').on('change', () => {
+        var selectedDataVizId = $('.gallery-image img.selected').attr('id');
         play_audio('stop');
+        showVizCaption(selectedDataVizId);
         change_audio();
       });
 
@@ -640,7 +637,6 @@
       function play_audio(task, playbackRate) {
         if(task == 'play'){
           const audio = document.querySelector("audio.active");
-          // console.log(audio);
           try {
             audio.playbackRate = playbackRate;
           } catch(error) {
