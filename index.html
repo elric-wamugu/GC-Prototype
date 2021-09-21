@@ -330,34 +330,52 @@
             <form class="needs-validation" novalidate>
               <div class="input-group mb-4">
                 <div class="input-group-prepend" style="width: 100%;">
-                  <button id="audio-play" class="btn btn-primary btn-lg col-md-8 col-sm-8" type="button">
+                  <button id="audio-play" aria-label="Play audio" class="btn btn-primary btn-lg col-md-8 col-sm-8" type="button">
                     <i class="fas fa-play"></i>
                   </button>
-                  <button id="audio-stop" class="btn btn-outline-secondary btn-lg col-md-4 col-sm-4" type="button">
+                  <button id="audio-stop" aria-label="Stop audio" class="btn btn-outline-secondary btn-lg col-md-4 col-sm-4" type="button">
                     <i class="fas fa-stop"></i>
                   </button>
                 </div>
               </div>
               <div class="input-group mb-4">
                 <div class="input-group-prepend" style="width: 100%;">
-                  <button class="btn btn-outline-secondary btn-lg col-md-6 col-sm-6" type="button" aria-label="Play audio" disabled>
+                  <button class="btn btn-outline-secondary btn-lg col-md-6 col-sm-6" type="button" aria-label="Previous visualization" disabled>
                     <i class="fas fa-step-backward"></i>
+                     <span>Previous visualization</span>
                   </button>
-                  <button class="btn btn-outline-secondary btn-lg col-md-6 col-sm-6" type="button" aria-label="Stop audio" disabled>
+                  <button class="btn btn-outline-secondary btn-lg col-md-6 col-sm-6" type="button" aria-label="Next visualization" disabled>
                     <i class="fas fa-step-forward"></i>
+                    <span>Next visualization</span>
                   </button>
                 </div>
               </div>
               <div class="input-group mb-4">
                 <div class="input-group-prepend audios" style="width: 100%;">
-                  <audio id="audio-en" class="audio-en audio" src="assets/audio/graph-text-en.mp3" controls></audio>
-                  <audio id="audio-es" class="audio-es audio" src="assets/audio/graph-text-es.mp3" controls></audio>
-                  <audio id="audio-fr" class="audio-fr audio" src="assets/audio/graph-text-fr.mp3" controls></audio>
-                  <audio id="audio-sw" class="audio-sw audio" src="assets/audio/graph-text-sw.mp3" controls></audio>
-                  <audio id="viz1-en" class="audio-eng audio" src="assets/audio/viz1-en.mp3" controls></audio>
-                  <audio id="viz1-es" class="audio-es audio" src="assets/audio/viz1-es.mp3" controls></audio>
-                  <audio id="viz1-fr" class="audio-fr audio" src="assets/audio/viz1-fr.mp3" controls></audio>
-                  <audio id="viz2-en" class="audio" src="assets/audio/viz2-en.mp3" controls></audio>
+                  <audio id="audio-en" class="audio-en audio" src="assets/audio/graph-text-en.mp3" controls>
+                    Your browser does not support the <code>audio</code> element.
+                  </audio>
+                  <audio id="audio-es" class="audio-es audio" src="assets/audio/graph-text-es.mp3" controls>
+                    Your browser does not support the <code>audio</code> element.
+                  </audio>
+                  <audio id="audio-fr" class="audio-fr audio" src="assets/audio/graph-text-fr.mp3" controls>
+                    Your browser does not support the <code>audio</code> element.
+                  </audio>
+                  <audio id="audio-sw" class="audio-sw audio" src="assets/audio/graph-text-sw.mp3" controls>
+                    Your browser does not support the <code>audio</code> element.
+                  </audio>
+                  <audio id="viz1-en" class="audio-eng audio" src="assets/audio/viz1-en.mp3" controls>
+                    Your browser does not support the <code>audio</code> element.
+                  </audio>
+                  <audio id="viz1-es" class="audio-es audio" src="assets/audio/viz1-es.mp3" controls>
+                    Your browser does not support the <code>audio</code> element.
+                  </audio>
+                  <audio id="viz1-fr" class="audio-fr audio" src="assets/audio/viz1-fr.mp3" controls>
+                    Your browser does not support the <code>audio</code> element.
+                  </audio>
+                  <audio id="viz2-en" class="audio" src="assets/audio/viz2-en.mp3" controls>
+                    Your browser does not support the <code>audio</code> element.
+                  </audio>
 
                 </div>
               </div>
